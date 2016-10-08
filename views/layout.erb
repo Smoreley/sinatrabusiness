@@ -7,7 +7,9 @@
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/main.css"> </head>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/product.css">
+   </head>
 
 <body>
     <div id="pagecontent">
@@ -15,17 +17,21 @@
         <nav class="nooverflow">
             <div id="navtab" class="container">
                 <div class="row">
-                    <div class="col-sm-4"><a href="/">Home</a></div>
-                    <div class="col-sm-4"><a>Product</a></div>
-                    <div class="col-sm-2"><a href="/">About</a></div>
-                    <div class="col-sm-2"><a>Contact</a></div>
+                    <div class="col-sm-3"><a href="/home">Home</a></div>
+                    <div class="col-sm-3"><a href="/product">Product</a></div>
+                    <div class="col-sm-3"><a href="/about">About</a></div>
+                    <div class="col-sm-3"><a>CheckOut</a></div>
                 </div>
             </div>
         </nav>
-        <div id="maincontent"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non auctor ligula. In quis sagittis tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam hendrerit dignissim rhoncus. Phasellus eget sapien pulvinar, imperdiet risus in, porta dolor. Curabitur nec dui arcu. Sed quis quam quis libero egestas auctor non sit amet sapien. Suspendisse dui massa, maximus ut tempor eu, imperdiet gravida libero. Nunc quis sem nunc. Vivamus elementum turpis quis lectus tincidunt tincidunt. Maecenas vitae consequat nisl. Pellentesque dignissim vitae velit nec luctus. Curabitur at vulputate purus, eu consequat enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non auctor ligula. In quis sagittis tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam hendrerit dignissim rhoncus. Phasellus eget sapien pulvinar, imperdiet risus in, porta dolor. Curabitur nec dui arcu. Sed quis quam quis libero egestas auctor non sit amet sapien. Suspendisse dui massa, maximus ut tempor eu, imperdiet gravida libero. Nunc quis sem nunc. Vivamus elementum turpis quis lectus tincidunt tincidunt. Maecenas vitae consequat nisl. Pellentesque dignissim vitae velit nec luctus. Curabitur at vulputate purus, eu consequat enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non auctor ligula. In quis sagittis tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam hendrerit dignissim rhoncus. Phasellus eget sapien pulvinar, imperdiet risus in, porta dolor. Curabitur nec dui arcu. Sed quis quam quis libero egestas auctor non sit amet sapien. Suspendisse dui massa, maximus ut tempor eu, imperdiet gravida libero. Nunc quis sem nunc. Vivamus elementum turpis quis lectus tincidunt tincidunt. Maecenas vitae consequat nisl. Pellentesque dignissim vitae velit </div>
-        <footer>
-            <div class="triangleBottom" class="nooverflow"></div>
-        </footer>
+        
+        <div id="maincontent">
+        	<%= yield %>
+        </div>
+
+        <footer>        </footer>
+
+        <div class="triangleBottom" class="nooverflow"></div>
     </div>
 </body>
 

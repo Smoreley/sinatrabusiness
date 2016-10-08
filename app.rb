@@ -1,8 +1,23 @@
 require 'sinatra'
 
-get '/' do 
+# get '/' do 
      
-    erb :layout;
+#     erb :contact;
     
+# end
+
+get '/:name' do
+
+case params[:name]
+	when "home"
+		erb :home;
+	when "about"
+		erb :about;
+	when "product"
+		erb :product;
+	else
+		"Nope 404 error!"
+	end
+
 end
 

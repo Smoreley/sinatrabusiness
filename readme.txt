@@ -1,6 +1,5 @@
 Business
-History of vg
-Superheroe gadget development 
+Superhero gadget development 
 
 Pages:
 Homepage

@@ -1,0 +1,88 @@
+@font-face {
+    font-family: reg-font;
+    src: url("../font/NotoSans-Regular.ttf");
+}
+
+* {
+    font-family: reg-font;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: #f0f0f0;
+}
+
+html, body {
+    height: 100%;
+}
+
+:root {
+    width: 100vw;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #222222;
+}
+
+#pagecontent {
+    margin: 0 auto;
+    width: 80vw;
+    height: 100%;
+    background-color: #400;
+}
+
+.nooverflow {
+    overflow: hidden;
+	width: 100vw;
+}
+
+/* Nav */
+nav {
+    position: absolute;
+    width: 100vw;
+    left: 0;
+    top: 0;
+    
+    transform: 
+/*    height: 15vw;*/
+/*    background-color: red;*/
+    font-size: 3vw;
+/*    transform: translateY(67px);*/
+}
+
+#navtab {
+/*    position: absolute;*/
+/*    top: 0;*/
+    
+
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    right: 5vw;
+    bottom: 0;
+}
+
+.triangleTop {
+    z-index: -1;
+    border-width: 100px 95vw 0 0;
+    border-style:solid;
+    border-color:#fff transparent transparent #fff;
+    transform: translateX(-5vw) skew(10deg, 0deg);
+}
+
+.triangleBottom {
+    z-index: -1;
+    border-width:0 0 100px 95vw;
+    border-style:solid;
+    border-color:transparent #fff #fff transparent;
+    transform: skew(10deg, 0deg);
+}
+
+
+#maincontent {
+    padding: 1em 1em;
+}

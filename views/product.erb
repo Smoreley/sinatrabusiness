@@ -1,28 +1,26 @@
-<h1>THis is the product page</h1>
+<link rel="stylesheet" href="/css/product.css">
+
+<h1>Product</h1>
 
 <div id="productcontainer">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="prodcontent">
-                    <div id="productimage">
-                        <h1>Blaster</h1> <img src="/image/blaster.jpg" alt="blaster"> </div>
-                    <div id="productdescription"> This is where all the text will go! This is where all the text will go! This is where all the text will go! </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="prodcontent">
-                    <div id="productimage">
-                        <h1>Blaster</h1> <img src="/image/hook.jpg" alt="blaster"> </div>
-                    <div id="productdescription"> This is where all the text will go! This is where all the text will go! This is where all the text will go! This is where all the text will go! </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="prodcontent">
-                    <div id="productimage"> <h1>Blaster</h1> <img src="/image/lightsaber.jpg" alt="blaster"> </div>
-                    <div id="productdescription"> This is where all the text will go! This is where all the text will go! This is where all the text will go! This is where all the text will go! </div>
-                </div>
-            </div>
-        </div>
+    <% for i in 0...(@products.count/2) do %>
+	    <div class="row">
+	    	<% for j in 0...3 do %>
+	    	<% if @products.count <= (i*3)+j; break end %>
+				<div class="col-sm-4">
+					<div class="prodcontent">
+	                	<div id="productimage">
+	                        <h1><%= @products[(i*3)+j][:name] %></h1>
+	                        <img src="/image/<%= @products[(i*3)+j][:img] %>" alt="blaster">
+	                    </div>
+	                    <div id="productdescription">
+	                        <%= @products[(i*3)+j][:description] %>
+	                    </div>
+	                </div>
+	            </div>
+	    	<% end %>
+	    </div>
+    <% end %>
     </div>
 </div>

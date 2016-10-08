@@ -1,1 +1,31 @@
-<h2>This is the about page</h2>
+<link rel="stylesheet" href="/css/about.css">
+
+<h2>About Gadget Emporium</h2>
+
+<div id="aboutcontainer">
+	<p>Gadget Emporium was founded six years past the resurection of the twelth island off the east coast of zimbabwe. </p>
+
+	<div id="googleMap"></div>
+</div>
+
+<!-- Add Google Maps -->
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+    var myCenter = new google.maps.LatLng(-20.514966, -29.321725);
+
+    function initialize() {
+        var mapProp = {
+            center: myCenter
+            , zoom: 12
+            , scrollwheel: true
+            , draggable: false
+            , mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        var marker = new google.maps.Marker({
+            position: myCenter
+        , });
+        marker.setMap(map);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>

@@ -8,7 +8,15 @@ require 'sinatra'
 
 get '/:name' do
 
-case params[:name]
+	@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!"},
+		{name: "Saber", img: "lightsaber.jpg", description: "Swosh swosh!"},
+		{name: "Hammer", img: "hammer.jpg", description: "Thuuuud......THUUUD!"},
+		{name: "Reactor", img: "reactor.jpg", description: "humnznznznznznznnznzn!"},
+		{name: "Recorder", img: "talkie.jpg", description: "Sul sul. Zo hungwah Ne chumcha laka fruby nart."},
+		{name: "Hook", img: "hook.jpg", description: "puhhh shhshshhsh dadehda cring."},
+		{name: "Pickaxe", img: "pickaxe.jpg", description: "Whoops."} ];
+
+	case params[:name]
 	when "home"
 		erb :home;
 	when "about"
@@ -20,4 +28,3 @@ case params[:name]
 	end
 
 end
-

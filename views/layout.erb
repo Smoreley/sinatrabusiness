@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Genzmins</title>
+    <title>Arget</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -14,23 +14,25 @@
     <div id="pagecontent">
         <div class="triangleTop"></div>
         <nav class="nooverflow">
+
+        <% if @loggedin %>
             <div id="navtab" class="container">
                 <div class="row">
-                    <div class="col-sm-2"><a href="/home">Home</a></div>
+                	<div class="col-sm-2"><a href="/about">About</a></div>
                     <div class="col-sm-2"><a href="/product">Product</a></div>
-                    <div class="col-sm-2"><a href="/about">About</a></div>
                     <div class="col-sm-2"><a>CheckOut</a></div>
                     <div class="col-sm-2"><a href="/logout">Logout</a></div>
                 </div>
             </div>
+
+           <% end %>
         </nav>
 
         <div id="maincontent">
         	<%= yield %>
         </div>
 
-        <footer>        </footer>
-
+        <footer>&copy;2016 Arget</footer>
         <div class="triangleBottom" class="nooverflow"></div>
     </div>
 </body>

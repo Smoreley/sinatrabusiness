@@ -7,15 +7,18 @@ configure :development do
 end 
 require './models'
 
+# --- Variables ---
+@loggedin = false;
+
 # --- GETS ---
 
 # Temp, this should be removed later. Right now used for testing login (with out inputing the data)
-get '/home' do
-	@user = User.new(email: params["email"],username: params["username"], password: params["password"])
-	@user.save
-	session[:id] = @user.id
-	erb :home
-end
+# get '/home' do
+# 	@user = User.new(email: params["email"],username: params["username"], password: params["password"])
+# 	@user.save
+# 	session[:id] = @user.id
+# 	erb :home
+# end
 
 get '/' do
 	erb :'/front'
@@ -27,6 +30,7 @@ get '/:name' do
 	# If session exists/(signed in) then find user
 	if session[:id] != nil
 		@user = User.find(session[:id]);
+		@loggedin = true;
 
 		# Product Info
 		@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!"},
@@ -51,6 +55,8 @@ get '/:name' do
 			erb :Error404;
 		end
 	else
+		@loggedin = false;
+
 		# If not signed in then
 		case params[:name]
 		when "signup"

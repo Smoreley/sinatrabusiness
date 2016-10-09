@@ -58,7 +58,11 @@ nav {
 
 /* Footer */
 footer {
-    
+    z-index: 1;
+    position: relative;
+    color: black;
+    float: right;
+    transform: translateY(50px);
 }
 
 .triangleTop {

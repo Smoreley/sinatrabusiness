@@ -2,8 +2,12 @@
 	
 }
 
+h1 {
+	text-align: center;
+}
+
 #googleMap {
 	height: 400px;
 	max-width: 800px;
-	margin: auto;
+	margin: 3em auto;
 }

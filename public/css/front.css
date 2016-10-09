@@ -1,38 +1,32 @@
 #fontcontainer {
-	
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 #fontcontainer > #top {
 	text-align: center;
-	
+}
+
+#top > h1 {
+	font-size: 4em;
 }
 
 #fontcontainer > #bottom {
-	/*background-color: red;*/
-	text-align: center;
-	
+	text-align: center;	
 }
 
 .bttn {
-	background-color: white;
+	background-color: rgba(256,256,256,.7);
 	color: black;
 	font-size: 2em;
 	width: 100%;
-	/*height: 100px;*/
 	border-radius: 10px 100px;
 	transition-duration: .45s;
 }
 
 .bttn:hover{
+	background-color: white;
 	border-radius: 100px 10px;
-}
-
-#bottom > .container > .row {
-	/*background-color: red;*/
-	height: 200px;
-}
-
-#bottom > .container > .row > .col-sm-2 {
-	/*background-color: blue;*/
-	height: 200px;
 }

@@ -4,6 +4,7 @@ require 'json'
 # require "sendgrid-ruby"
 
 enable :sessions
+
 configure :development do
   set :database, 'sqlite3:db/database.db'
 end 
@@ -22,6 +23,18 @@ require './models'
 # 	erb :home
 # end
 
+# Global Var go here
+before do 
+		# Product Info
+		@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!"},
+			{name: "Saber", img: "lightsaber.jpg", description: "Swosh swosh!"},
+			{name: "Hammer", img: "hammer.jpg", description: "Thuuuud......THUUUD!"},
+			{name: "Reactor", img: "reactor.jpg", description: "humnznznznznznznnznzn!"},
+			{name: "Recorder", img: "talkie.jpg", description: "Sul sul. Zo hungwah Ne chumcha laka fruby nart."},
+			{name: "Hook", img: "hook.jpg", description: "puhhh shhshshhsh dadehda cring."},
+			{name: "Pickaxe", img: "pickaxe.jpg", description: "Whoops."} ];
+end
+
 get '/' do
 	erb :'/front'
 
@@ -35,14 +48,7 @@ get '/:name' do
 		@user = User.find(session[:id]);
 		@loggedin = true;
 
-		# Product Info
-		@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!"},
-			{name: "Saber", img: "lightsaber.jpg", description: "Swosh swosh!"},
-			{name: "Hammer", img: "hammer.jpg", description: "Thuuuud......THUUUD!"},
-			{name: "Reactor", img: "reactor.jpg", description: "humnznznznznznznnznzn!"},
-			{name: "Recorder", img: "talkie.jpg", description: "Sul sul. Zo hungwah Ne chumcha laka fruby nart."},
-			{name: "Hook", img: "hook.jpg", description: "puhhh shhshshhsh dadehda cring."},
-			{name: "Pickaxe", img: "pickaxe.jpg", description: "Whoops."} ];
+
 
 		case params[:name]
 		when "home"
@@ -115,13 +121,6 @@ post '/checkout' do
 end
 
 post '/getdata' do
-	@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!"},
-		{name: "Saber", img: "lightsaber.jpg", description: "Swosh swosh!"},
-		{name: "Hammer", img: "hammer.jpg", description: "Thuuuud......THUUUD!"},
-		{name: "Reactor", img: "reactor.jpg", description: "humnznznznznznznnznzn!"},
-		{name: "Recorder", img: "talkie.jpg", description: "Sul sul. Zo hungwah Ne chumcha laka fruby nart."},
-		{name: "Hook", img: "hook.jpg", description: "puhhh shhshshhsh dadehda cring."},
-		{name: "Pickaxe", img: "pickaxe.jpg", description: "Whoops."} ];
 	@products.to_json
 end
 

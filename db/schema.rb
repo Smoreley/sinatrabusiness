@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20161009013114) do
     t.string   "email"
     t.string   "username"
     t.string   "password"
+    t.string   "products"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

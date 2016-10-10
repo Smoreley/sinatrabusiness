@@ -8,14 +8,19 @@
 	    <div class="row">
 	    	<% for j in 0...3 do %>
 	    	<% if @products.count <= (i*3)+j; break end %>
-				<div class="col-sm-4">
+				<div class="col-sm-4" id=<%'#{@products.name}'%>>
+				 
 					<div class="prodcontent">
 	                	<div id="productimage">
 	                        <h1><%= @products[(i*3)+j][:name] %></h1>
+	                        
+	                        
 	                        <img src="/image/<%= @products[(i*3)+j][:img] %>" alt="blaster">
 	                    </div>
 	                    <div id="productdescription">
+	                        
 	                        <%= @products[(i*3)+j][:description] %>
+	                   		 <h1 id="<%= @products[(i*3)+j][:name] %>"> Add to Cart </h1>
 	                    </div>
 	                </div>
 	            </div>
@@ -23,4 +28,91 @@
 	    </div>
     <% end %>
     </div>
+ 
 </div>
+
+ 
+
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <script>
+ 	// var array = [1,2,3,4,6]
+ 	
+ 	// $.ajax({
+  //       url : "/add",
+  //       type : "post",
+  //       data : { data_value: JSON.stringify(array) }
+  //   });
+
+
+
+
+
+ 	$(document).ready(function(){
+    var arr = " "
+    $("#Saber").click(function(){
+       $(this).hide();
+    
+    // var a = $(this).split("");
+    arr += "Saber" + " ";
+
+
+    // arr.push($(this).split(""));
+    // console.log(arr);
+
+    });
+
+    $("#Blaster").click(function(){
+       $(this).hide();
+   
+       arr += "Blaster" + " ";
+    });
+
+    $("#Hammer").click(function(){
+       $(this).hide();
+    
+       arr += "Hammer" + " ";
+    });
+
+    $("#Reactor").click(function(){
+       $(this).hide();
+      arr += "Reactor" + " ";
+    });
+
+
+    $("#Recorder").click(function(){
+       $(this).hide();
+       arr += "Recorder" + " ";
+    });
+
+    $("#Hook").click(function(){
+       $(this).hide();
+       arr += "Hook" + " ";
+    });
+
+    $("#Pickaxe").click(function(){
+       $(this).hide();
+       arr += "Pickaxe" + " ";
+    });
+
+    $("#s").click(function() {
+
+$.ajax({
+        url : "/add",
+        type : "post",
+        data : { data_value: JSON.stringify(arr) },
+       
+
+    });
+
+$(this).hide();
+
+});
+
+});
+
+</script>
+
+
+<h1 id="s"> Submit </h1>

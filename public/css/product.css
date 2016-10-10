@@ -73,3 +73,17 @@
         transform: scale(1);
     }
 }
+
+#s {
+
+       
+       position: relative;
+       left: 500px;
+
+
+}
+
+#s:hover {
+
+    color: blue;
+}

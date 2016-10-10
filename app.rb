@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-
+require 'json'
 enable :sessions
 configure :development do
   set :database, 'sqlite3:db/database.db'
@@ -22,6 +22,7 @@ require './models'
 
 get '/' do
 	erb :'/front'
+
 end
 
 # Main navigation
@@ -43,11 +44,20 @@ get '/:name' do
 
 		case params[:name]
 		when "home"
+			
 			erb :home;
+	
 		when "about"
 			erb :about;
 		when "product"
 			erb :product;
+		
+		when "checkout"
+
+			@user = User.find_by_id(session[:id])
+
+			erb :checkout;
+
 		when "logout"
 			session.clear
 			erb :logout;
@@ -81,8 +91,32 @@ post '/sign' do
 	redirect :home;
 end
 
-post '/home' do
+ post '/home' do#, :provides => :json do
+  # I'd use a 201 as the status if actually creating something,
+  # 200 while testing.
+  # I'd send the JSON back as a confirmation too, hence the
+  # :provides => :json
+  # @data = JSON.parse params
+  # # do something with the data, then…
+  # halt 200, data.to_json
+  # halt because there's no need to render anything
+  # and it's convenient for setting the status too
+
 	@user = User.find_by(email: params["email"], password: params["password"])
 	session[:id] = @user.id
+	
+	
 	erb :home
 end
+
+
+post '/add' do
+ 
+ #@user = User.find_by(email: params["email"], password: params["password"])
+ @data = params["data_value"]
+ @user = User.find_by_id(session[:id]) 
+ @user.update_attributes(products: @data)
+ 
+end
+
+

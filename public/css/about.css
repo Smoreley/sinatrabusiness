@@ -11,3 +11,23 @@ h1 {
 	max-width: 800px;
 	margin: 3em auto;
 }
+
+form {
+	color: black;
+	/*background-color: red;*/
+	border: 4px outset white;
+	padding: 1em;
+}
+
+textarea {
+	width: 100%;
+}
+
+input {
+	width: 100%;
+}
+
+form > .row {
+	margin: 0;
+	padding: 1em 0;
+}

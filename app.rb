@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'json'
+# require "sendgrid-ruby"
+
 enable :sessions
 configure :development do
   set :database, 'sqlite3:db/database.db'
@@ -46,18 +48,15 @@ get '/:name' do
 		when "home"
 			
 			erb :home;
-	
 		when "about"
 			erb :about;
 		when "product"
 			erb :product;
 		
-		when "checkout"
+		when "cart"
 
 			@user = User.find_by_id(session[:id])
-
-			erb :checkout;
-
+			erb :cart;
 		when "logout"
 			session.clear
 			erb :logout;
@@ -91,7 +90,8 @@ post '/sign' do
 	redirect :home;
 end
 
- post '/home' do#, :provides => :json do
+post '/home' do
+	#, :provides => :json do
   # I'd use a 201 as the status if actually creating something,
   # 200 while testing.
   # I'd send the JSON back as a confirmation too, hence the
@@ -109,14 +109,27 @@ end
 	erb :home
 end
 
+post '/checkout' do
+
+	redirect :cart;
+end
+
+post '/getdata' do
+	@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!"},
+		{name: "Saber", img: "lightsaber.jpg", description: "Swosh swosh!"},
+		{name: "Hammer", img: "hammer.jpg", description: "Thuuuud......THUUUD!"},
+		{name: "Reactor", img: "reactor.jpg", description: "humnznznznznznznnznzn!"},
+		{name: "Recorder", img: "talkie.jpg", description: "Sul sul. Zo hungwah Ne chumcha laka fruby nart."},
+		{name: "Hook", img: "hook.jpg", description: "puhhh shhshshhsh dadehda cring."},
+		{name: "Pickaxe", img: "pickaxe.jpg", description: "Whoops."} ];
+	@products.to_json
+end
 
 post '/add' do
- 
- #@user = User.find_by(email: params["email"], password: params["password"])
- @data = params["data_value"]
- @user = User.find_by_id(session[:id]) 
- @user.update_attributes(products: @data)
- 
+	#@user = User.find_by(email: params["email"], password: params["password"])
+	@data = params["data_value"]
+	@user = User.find_by_id(session[:id]) 
+	@user.update_attributes(products: @data)
 end
 
 

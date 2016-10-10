@@ -9,6 +9,7 @@
     padding: 0;
     margin: 0;
     color: #f0f0f0;
+    transition: .2s;
 }
 
 html, body {
@@ -49,6 +50,7 @@ nav {
 /*    background-color: red;*/
 /*    font-size: 3vw;*/
 /*    transform: translateY(67px);*/
+padding: 1em;
 }
 
 #navtab {
@@ -62,7 +64,8 @@ footer {
     position: relative;
     color: black;
     float: right;
-    transform: translateY(50px);
+    padding: 20px;
+    transform: translateY(40px);
 }
 
 .triangleTop {
@@ -88,15 +91,36 @@ footer {
     min-height: calc(100vh - 200px);
 }
 
+#submit > input {
+    margin: 1em;
+    background-color: rgba(256,256,256,.7);
+    color: black;
+    font-size: 2em;
+    width: 100%;
+    border-radius: 10px 100px;
+    transition-duration: .45s;
+    border:none;
+}
+
+#submit > input:hover {
+    text-decoration: underline;
+    background-color: white;
+    border-radius: 100px 10px;
+}
+
 @media only screen and (max-width: 750px) {    
+    #pagecontent {
+        width: 100vw;
+    }
+
     .triangleTop {
-        border-width: 100px 100vw 0 0;
-        transform: translateX(-10vw) skew(00deg, 0deg);
+        border-width: 200px 100vw 0 0;
+        transform: translateX(0vw) skew(00deg, 0deg);
     }
 
     .triangleBottom {
         border-width:0 0 100px 100vw;
-        transform: translateX(-10vw) skew(0deg, 0deg);
+        transform: translateX(0vw) skew(0deg, 0deg);
     }
 
 }

@@ -1,9 +1,12 @@
 <h1> Checkout </h1>
 <h2> Your Selected Items </h2>
+
 <% a = @user.products.split(" ") %>
+
 <%for i in 1...a.length - 1%>
-	<h3><%= a[i] %></h3>
+  <h3><%= a[i] %></h3>
 <%end%>
+
 <form>
   Name on Credit Card:<br>
   <input type="text" name="name"><br>
@@ -11,10 +14,10 @@
   <input type="text" name="address">
   Shipping Address:<br>
   <input type="text" name="shipping">
-	Credit Card Number:<br>
+  Credit Card Number:<br>
   <input type="text" name="number">
-	Security Code:<br>
+  Security Code:<br>
   <input type="text" name="sc">
-<label><input type="checkbox" id="cbox1" value="first_checkbox"> Check to Save Info</label><br>
-<input type="submit" value="Submit">
+  <label><input type="checkbox" id="cbox1" value="first_checkbox"> Check to Save Info</label><br>
+  <input type="submit" value="Submit">
 </form>

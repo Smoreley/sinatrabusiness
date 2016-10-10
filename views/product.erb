@@ -12,15 +12,13 @@
 				 
 					<div class="prodcontent">
 	                	<div id="productimage">
+                    <div id="<%= @products[(i*3)+j][:name] %>" class="addbttn"></div>
 	                        <h1><%= @products[(i*3)+j][:name] %></h1>
-	                        
 	                        
 	                        <img src="/image/<%= @products[(i*3)+j][:img] %>" alt="blaster">
 	                    </div>
-	                    <div id="productdescription">
-	                        
+	                    <div id="productdescription">	                        
 	                        <%= @products[(i*3)+j][:description] %>
-	                   		 <h1 id="<%= @products[(i*3)+j][:name] %>"> Add to Cart </h1>
 	                    </div>
 	                </div>
 	            </div>
@@ -28,15 +26,11 @@
 	    </div>
     <% end %>
     </div>
- 
+
+    <div id="s"> Submit </div>
 </div>
-
  
-
-
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
- <script>
+<script>
  	// var array = [1,2,3,4,6]
  	
  	// $.ajax({
@@ -45,74 +39,38 @@
   //       data : { data_value: JSON.stringify(array) }
   //   });
 
+var arr = " ";
+$(document).ready(function(){
 
-
-
-
- 	$(document).ready(function(){
-    var arr = " "
-    $("#Saber").click(function(){
-       $(this).hide();
-    
-    // var a = $(this).split("");
-    arr += "Saber" + " ";
-
-
-    // arr.push($(this).split(""));
-    // console.log(arr);
-
+    // Black magic that handles on click events for the product page
+    $.post("getdata", function(result) {
+        var a = $.parseJSON(result)
+        for (i = 0; i < a.length; i++) {
+          (function(j) {
+              $("#"+a[i]["name"]).click(() => addtoarray(j) );
+          })(a[i]["name"]+" ");
+        }
     });
 
-    $("#Blaster").click(function(){
-       $(this).hide();
-   
-       arr += "Blaster" + " ";
-    });
-
-    $("#Hammer").click(function(){
-       $(this).hide();
-    
-       arr += "Hammer" + " ";
-    });
-
-    $("#Reactor").click(function(){
-       $(this).hide();
-      arr += "Reactor" + " ";
-    });
-
-
-    $("#Recorder").click(function(){
-       $(this).hide();
-       arr += "Recorder" + " ";
-    });
-
-    $("#Hook").click(function(){
-       $(this).hide();
-       arr += "Hook" + " ";
-    });
-
-    $("#Pickaxe").click(function(){
-       $(this).hide();
-       arr += "Pickaxe" + " ";
-    });
+    // alert(<% @products.count %>);
 
     $("#s").click(function() {
+      $.ajax({
+              url : "/add",
+              type : "post",
+              data : { data_value: JSON.stringify(arr) },
+            });
 
-$.ajax({
-        url : "/add",
-        type : "post",
-        data : { data_value: JSON.stringify(arr) },
-       
 
+      window.location = '/cart';
     });
 
-$(this).hide();
-
 });
 
-});
+function addtoarray(str) {
+  arr += str;
+  alert(arr);
+
+}
 
 </script>
-
-
-<h1 id="s"> Submit </h1>

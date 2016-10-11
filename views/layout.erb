@@ -34,8 +34,9 @@
         <h1><%=flash[:error]%></h1>
         <%end%>
 
-        
-        
+<% if flash[:miss] %>
+        <h1><%=flash[:miss]%></h1>
+        <%end%>        
 
         <div id="maincontent">
         	<%= yield %>

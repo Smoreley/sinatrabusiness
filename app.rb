@@ -118,11 +118,20 @@ post '/home' do
   # halt because there's no need to render anything
   # and it's convenient for setting the status too
 
+	
+  	if User.exists?(email: params["email"]) && User.exists?(password: params["password"])
+
 	@user = User.find_by(email: params["email"], password: params["password"])
 	session[:id] = @user.id
-	
-	
 	redirect :home;
+
+else
+	flash[:miss] = "Your username or password was incorrect. Please try again."
+	redirect :login;
+
+end
+
+
 end
 
 post '/checkout' do

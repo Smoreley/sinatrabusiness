@@ -56,6 +56,13 @@
     color: black;
 }
 
+#pricecontainer {
+    font-size: 1.4em;
+    color: black;
+    text-align: center;
+    border-top: 2px black solid;
+}
+
 #s {
     position: fixed;
     top: 100px;

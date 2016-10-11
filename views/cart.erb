@@ -5,7 +5,7 @@
 <div id="cartcontainer">
 
   <% a = @user.products.split(" ") %>
-
+  
   <div id="top">
   <table>
     <tr>
@@ -15,9 +15,9 @@
     </tr>
     <%for i in 1...a.length - 1%>
       <tr>
-      <th><%= a[i] %></th>
+      <th><%= @products[a[i].to_i][:name] %></th>
       <th>1</th>
-      <th>$000.00</th>
+      <th>$<%= @products[a[i].to_i][:price] %></th>
       </tr>
     <%end%>
   </table>

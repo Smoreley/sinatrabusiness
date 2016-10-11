@@ -13,13 +13,13 @@
 					<div class="prodcontent">
 	                	<div id="productimage">
                     <div id="<%= @products[(i*3)+j][:name] %>" class="addbttn"></div>
-	                        <h1><%= @products[(i*3)+j][:name] %></h1>
-	                        
+	                        <h1><%= @products[(i*3)+j][:name] %></h1>	                        
 	                        <img src="/image/<%= @products[(i*3)+j][:img] %>" alt="blaster">
 	                    </div>
 	                    <div id="productdescription">	                        
 	                        <%= @products[(i*3)+j][:description] %>
 	                    </div>
+                      <div id="pricecontainer"><%= @products[(i*3)+j][:price] %></div>
 	                </div>
 	            </div>
 	    	<% end %>
@@ -31,44 +31,42 @@
 </div>
  
 <script>
- 	// var array = [1,2,3,4,6]
- 	
- 	// $.ajax({
-  //       url : "/add",
-  //       type : "post",
-  //       data : { data_value: JSON.stringify(array) }
-  //   });
+   	// var array = [1,2,3,4,6]
+   	
+   	// $.ajax({
+    //       url : "/add",
+    //       type : "post",
+    //       data : { data_value: JSON.stringify(array) }
+    //   });
 
-var arr = " ";
-$(document).ready(function(){
+  var arr = " ";
+  $(document).ready(function(){
 
-    // Black magic that handles on click events for the product page
-    $.post("getdata", function(result) {
-        var a = $.parseJSON(result)
-        for (i = 0; i < a.length; i++) {
-          (function(j) {
-              $("#"+a[i]["name"]).click(() => addtoarray(j) );
-          })(a[i]["name"]+" ");
-        }
-    });
+      // Black magic that handles on click events for the product page
+      $.post("getdata", function(result) {
+          var a = $.parseJSON(result)
+          for (i = 0; i < a.length; i++) {
+            (function(j) {
+                $("#"+a[i]["name"]).click(() => addtoarray(j) );
+            })(i + " ");
+          }
+      });
 
-    // alert(<% @products.count %>);
+      $("#s").click(function() {
+        $.ajax({
+                url : "/add",
+                type : "post",
+                data : { data_value: JSON.stringify(arr) },
+              });
 
-    $("#s").click(function() {
-      $.ajax({
-              url : "/add",
-              type : "post",
-              data : { data_value: JSON.stringify(arr) },
-            });
+        // Travel to the cart page after hitting the submit button
+        window.location = '/cart';
+      });
 
+  });
 
-      window.location = '/cart';
-    });
-
-});
-
-function addtoarray(str) {
-  arr += str;
-}
+  function addtoarray(str) {
+    arr += str;
+  }
 
 </script>

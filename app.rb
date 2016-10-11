@@ -26,13 +26,13 @@ require './models'
 # Global Var go here
 before do 
 		# Product Info
-		@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!"},
-			{name: "Saber", img: "lightsaber.jpg", description: "Swosh swosh!"},
-			{name: "Hammer", img: "hammer.jpg", description: "Thuuuud......THUUUD!"},
-			{name: "Reactor", img: "reactor.jpg", description: "humnznznznznznznnznzn!"},
-			{name: "Recorder", img: "talkie.jpg", description: "Sul sul. Zo hungwah Ne chumcha laka fruby nart."},
-			{name: "Hook", img: "hook.jpg", description: "puhhh shhshshhsh dadehda cring."},
-			{name: "Pickaxe", img: "pickaxe.jpg", description: "Whoops."} ];
+		@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!", price: 800},
+			{name: "Saber", img: "lightsaber.jpg", description: "Swosh swosh!", price: 900},
+			{name: "Hammer", img: "hammer.jpg", description: "Thuuuud......THUUUD!", price: 800},
+			{name: "Reactor", img: "reactor.jpg", description: "humnznznznznznznnznzn!", price: 400},
+			{name: "Recorder", img: "talkie.jpg", description: "Sul sul. Zo hungwah Ne chumcha laka fruby nart.", price: 500},
+			{name: "Hook", img: "hook.jpg", description: "puhhh shhshshhsh dadehda cring.", price: 1200},
+			{name: "Pickaxe", img: "pickaxe.jpg", description: "Whoops.", price: 400} ];
 end
 
 get '/' do
@@ -89,7 +89,7 @@ end
 # --- POSTS ---
 post '/sign' do
 	puts params
-	@user = User.new(email: params["email"],username: params["username"], password: params["password"])
+	@user = User.new(email: params["email"],username: params["username"], password: params["password"], products: " ")
 	@user.save
 
 	session[:id] = @user.id
@@ -111,14 +111,12 @@ post '/home' do
 	@user = User.find_by(email: params["email"], password: params["password"])
 	session[:id] = @user.id
 	
-	
 	erb :home
 end
 
-post '/checkout' do
-
-	redirect :cart;
-end
+# post '/checkout' do
+# 	redirect :cart;
+# end
 
 post '/getdata' do
 	@products.to_json
@@ -131,4 +129,6 @@ post '/add' do
 	@user.update_attributes(products: @data)
 end
 
+post '/contact' do
 
+end

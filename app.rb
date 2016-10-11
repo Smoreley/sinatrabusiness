@@ -142,8 +142,10 @@ post '/add' do
 end
 
 post '/cart' do
+	@user = User.find_by_id(session[:id]) 
+	@user.update_attributes(products: nil)
 	flash[:confirm] = "Thanks for shopping at Arget. We will send you confimation of your order ASAP"
-	redirect :home;
+	redirect :cart;
 
 end
 

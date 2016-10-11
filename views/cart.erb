@@ -1,23 +1,73 @@
+<link rel="stylesheet" href="/css/cart.css">
+
 <h1> Checkout </h1>
-<h2> Your Selected Items </h2>
 
-<% a = @user.products.split(" ") %>
+<div id="cartcontainer">
 
-<%for i in 1...a.length - 1%>
-  <h3><%= a[i] %></h3>
-<%end%>
+  <% a = @user.products.split(" ") %>
 
-<form>
-  Name on Credit Card:<br>
-  <input type="text" name="name"><br>
-  Billing Address:<br>
-  <input type="text" name="address">
-  Shipping Address:<br>
-  <input type="text" name="shipping">
-  Credit Card Number:<br>
-  <input type="text" name="number">
-  Security Code:<br>
-  <input type="text" name="sc">
-  <label><input type="checkbox" id="cbox1" value="first_checkbox"> Check to Save Info</label><br>
-  <input type="submit" value="Submit">
+  <div id="top">
+  <table>
+    <tr>
+      <td>Name</td>
+      <td>Quantity</td>
+      <td>Price</td>
+    </tr>
+    <%for i in 1...a.length - 1%>
+      <tr>
+      <th><%= a[i] %></th>
+      <th>1</th>
+      <th>$000.00</th>
+      </tr>
+    <%end%>
+  </table>
+  </div>
+
+<form method="POST">
+  <table>
+    <tr>
+      <td><label for="cardnumber">Card Number</label></th>
+      <td><label for="sc">Security Code</label></th>
+    </tr>
+    <tr>
+      <th><input type="text" name="cardnumber"></th>
+      <th><input type="text" name="sc"></th>
+    </tr>
+    <tr>
+      <td><label for="nameoncard">Name on Card</label></th>
+      <td><label for="expir">Expiration</label></th>
+    </tr>
+    <tr>
+      <th><input type="text" name="number"></th>
+      <th><input type="text" name="sc"></th>
+    </tr>
+  </table>
+
+  <br>
+  <div id="subcontainer">
+    <input class='bttn' type="submit" value="submit">
+  </div>
 </form>
+
+<!--   <form>
+    Card Number:<br>
+    <input type="text" name="number">
+
+    Name on Card:<br>
+    <input type="text" name="name"><br>
+
+    Billing Address:<br>
+    <input type="text" name="address">
+
+    Shipping Address:<br>
+    <input type="text" name="shipping">
+
+    Security Code:<br>
+    <input type="text" name="sc">
+
+    <label><input type="checkbox" id="cbox1" value="first_checkbox"> Check to Save Info</label><br>
+
+    <input type="submit" value="Submit">
+  </form>
+ -->
+</div>

@@ -16,17 +16,3 @@
 #fontcontainer > #bottom {
 	text-align: center;	
 }
-
-.bttn {
-	background-color: rgba(256,256,256,.7);
-	color: black;
-	font-size: 2em;
-	width: 100%;
-	border-radius: 10px 100px;
-	transition-duration: .45s;
-}
-
-.bttn:hover{
-	background-color: white;
-	border-radius: 100px 10px;
-}

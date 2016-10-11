@@ -119,6 +119,31 @@ end
 
 post '/contact' do
 
+
+
+	mail = SendGrid::Mail.new(
+		SendGrid::Email.new(email: "socom@gmail.com"),
+		"Thank you for messaging Arget.",
+		SendGrid::Email.new(email: params[:email] ),
+		SendGrid::Content.new(type: 'text/plain', value: <<-EMAILCONTENTS
+			Thank you for your feedback.
+
+			We will try to get back to as soon as possible.
+			#{params[:message]}
+			EMAILCONTENTS
+			)
+		)
+
+	sq = SendGrid::API.new( api_key: ENV['SENDGRID_API_KEY']);
+
+	response = sg.client.mail._('send').post(request_body: mail.to_json);
+
+	@msg = "Tank you for letting us knnow";
+	puts response.status_code;
+	puts response.body;
+	puts response.headers;
+
+
 end
 
 post '/cart' do

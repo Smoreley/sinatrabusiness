@@ -28,7 +28,7 @@
 }
 
 #productcontainer > .container > .row > .col-sm-4:hover {
-    animation-name: testing;
+    animation-name: bouncybounce;
     animation-timing-function: ease-in-out;
     animation-duration: .5s;
     background-color: white;
@@ -54,24 +54,6 @@
     padding: .75em;
     width: 100%;
     color: black;
-}
-
-@keyframes testing {
-    0% {
-        transform: scale(1);
-    }
-    25% {
-        transform: scale(1.05);
-    }
-    50% {
-        transform: scale(.97);
-    }
-    75% {
-        transform: scale(1.02);
-    }
-    100% {
-        transform: scale(1);
-    }
 }
 
 #s {
@@ -100,17 +82,42 @@
 .addbttn:hover {
     padding: 0 .4em;
     transform: scale(2);
-    color: red;
-}
+    color: red;}
 
 .addbttn:after {
     font-family: "Glyphicons Halflings";
     content:"\2b";
 }
 
+.addbttn:active {
+    color: black;
+    transform: scale(1.3);
+}
+
 @media only screen and (max-width: 750px) {    
     #s {
         top: 100px;
         left: calc(100vw - 100px);
+    }
+}
+
+
+/*ANIMATIONS*/
+
+@keyframes bouncybounce {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.05);
+    }
+    50% {
+        transform: scale(.97);
+    }
+    75% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
     }
 }

@@ -15,27 +15,23 @@
 <body>
     <div id="pagecontent">
         <div class="triangleTop"></div>
-        <nav class="nooverflow">
-
         <% if @loggedin %>
+        <nav class="nooverflow">
             <div id="navtab" class="container">
                 <div class="row">
                 	<div class="col-sm-2"><a href="/home">Account</a></div>
                 	<div class="col-sm-2"><a href="/about">About</a></div>
                     <div class="col-sm-2"><a href="/product">Product</a></div>
                     <div class="col-sm-2"><a href ="/cart">Cart</a></div>
-                    <div class="col-sm-2"><a href="/logout">Logout</a></div>
                 </div>
             </div>
-
-           <% end %>
         </nav>
+        <div id="logoutbttn"><a href="/logout"></a></div>
+        <% end %>
+
         <% if flash[:error] %>
         <h1><%=flash[:error]%></h1>
-        <%end%>
-
-        
-        
+        <%end%>        
 
         <div id="maincontent">
         	<%= yield %>

@@ -58,6 +58,31 @@ padding: 1em;
 /*    top: 0;*/
 }
 
+#logoutbttn {
+    position: absolute;
+    left: calc(90vw);
+    top: 40px;
+    height: 50px;
+    width: 50px;
+    font-size: 3em;
+    padding: 1vw;
+}
+
+#logoutbttn > a {
+    text-align: center;
+    text-decoration: none;
+}
+
+#logoutbttn > a:hover {
+    padding: .5vw;
+    color: red;
+}
+
+#logoutbttn > a:after {
+    font-family: "Glyphicons Halflings";
+    content: "\e163";
+}
+
 /* Footer */
 footer {
     z-index: 1;
@@ -135,6 +160,11 @@ footer {
     .triangleBottom {
         border-width:0 0 100px 100vw;
         transform: translateX(0vw) skew(0deg, 0deg);
+    }
+
+    #logoutbttn {
+        left: calc(85vw);
+        font-size: 3em;
     }
 
 }

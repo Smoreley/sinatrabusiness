@@ -65,7 +65,7 @@
 
 #s {
     position: fixed;
-    top: 100px;
+    bottom: 100px;
     left: calc(90vw - 100px);
     width: 100px;
     background-color: rgba(0,0,0,.8);
@@ -103,14 +103,13 @@
 
 @media only screen and (max-width: 750px) {    
     #s {
-        top: 100px;
+        bottom: 100px;
         left: calc(100vw - 100px);
     }
 }
 
 
 /*ANIMATIONS*/
-
 @keyframes bouncybounce {
     0% {
         transform: scale(1);

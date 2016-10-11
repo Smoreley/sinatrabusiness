@@ -30,9 +30,18 @@
 
            <% end %>
         </nav>
+        <% if flash[:error] %>
+        <h1><%=flash[:error]%></h1>
+        <%end%>
+
+        
+        
 
         <div id="maincontent">
         	<%= yield %>
+             <% if flash[:confirm] %>
+        <h1><%=flash[:confirm]%></h1>
+        <%end%>
         </div>
 
         <footer>&copy;2016 Arget</footer>

@@ -1,29 +1,53 @@
 <link rel="stylesheet" href="/css/cart.css">
-
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <h1> Checkout </h1>
-
+<% if @user.products != nil %>
 <div id="cartcontainer">
 
-  <% a = @user.products.split(" ") %>
-
-  <div id="top">
-  <table>
+  <% a = @user.products.split(" ")  %>
+<%def number_with_delimiter(number, delimiter=",", separator=".")
+  begin
+    parts = number.to_s.split('.')
+    parts[0].gsub!(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{delimiter}")
+    parts.join separator
+  rescue
+   number
+  end
+end%>
+ <div id="top">
+  <table id="t">
     <tr>
       <td>Name</td>
       <td>Quantity</td>
       <td>Price</td>
     </tr>
+    <%count = 0%>
+    <%t = 0%>
     <%for i in 1...a.length - 1%>
+      <% b = a[i].split("")%>
+      <%num = b.select {|x| x if /\A\d+\z/.match(x) || /\,/.match(x) } %>
+      <%string = b.select {|x| x if !/\A\d+\z/.match(x) && !/\,/.match(x) } %>
+      <%int = b.select {|x| x if /\A\d+\z/.match(x)  } %>
+      <%t += int.join("").to_i%>
       <tr>
-      <th><%= a[i] %></th>
+      <th><%=string.join("") %></th>
+      <%if i == a.length - 2 %>
+      <th><%=count%></th>
+      <%else%>
       <th>1</th>
-      <th>$000.00</th>
+      <%end%>
+      <%if i == a.length - 2 %>
+      <th>$<%=number_with_delimiter(t)%></th>
+      <%else%>
+      <th>$<%=num.join("")%></th>
+       <%end%>
+      <%count +=1 %>
       </tr>
     <%end%>
   </table>
   </div>
 
-<form method="POST">
+<form id="b" method="POST" action="/cart">
   <table>
     <tr>
       <td><label for="cardnumber">Card Number</label></th>
@@ -44,8 +68,19 @@
   </table>
 
   <br>
+    
   <div id="subcontainer">
     <input class='bttn' type="submit" value="submit">
+    
   </div>
 </form>
 </div>
+<%else%>
+<h1>Your cart is currently empty</h1>
+<%end%>
+<script>
+  
+
+
+
+</script>

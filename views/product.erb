@@ -46,15 +46,23 @@ $(document).ready(function(){
     $.post("getdata", function(result) {
         var a = $.parseJSON(result)
         for (i = 0; i < a.length; i++) {
+           
           (function(j) {
               $("#"+a[i]["name"]).click(() => addtoarray(j) );
-          })(a[i]["name"]+" ");
+          })(a[i]["name"] + a[i]["price"] + " ");
+        
+
+
         }
+    
+        
+
     });
 
     // alert(<% @products.count %>);
-
+ 
     $("#s").click(function() {
+       addtoarray("Total" + " ");
       $.ajax({
               url : "/add",
               type : "post",

@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'json'
+require 'sinatra/flash'
 # require "sendgrid-ruby"
 
 enable :sessions
@@ -26,13 +27,13 @@ require './models'
 # Global Var go here
 before do 
 		# Product Info
-		@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!"},
-			{name: "Saber", img: "lightsaber.jpg", description: "Swosh swosh!"},
-			{name: "Hammer", img: "hammer.jpg", description: "Thuuuud......THUUUD!"},
-			{name: "Reactor", img: "reactor.jpg", description: "humnznznznznznznnznzn!"},
-			{name: "Recorder", img: "talkie.jpg", description: "Sul sul. Zo hungwah Ne chumcha laka fruby nart."},
-			{name: "Hook", img: "hook.jpg", description: "puhhh shhshshhsh dadehda cring."},
-			{name: "Pickaxe", img: "pickaxe.jpg", description: "Whoops."} ];
+		@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!", price: "660,000"},
+			{name: "Saber", img: "lightsaber.jpg", description: "Swosh swosh!", price: "500,345"},
+			{name: "Hammer", img: "hammer.jpg", description: "Thuuuud......THUUUD!", price: "999,000"},
+			{name: "Reactor", img: "reactor.jpg", description: "humnznznznznznznnznzn!", price: "34,000"},
+			{name: "Recorder", img: "talkie.jpg", description: "Sul sul. Zo hungwah Ne chumcha laka fruby nart.", price: "456,000"},
+			{name: "Hook", img: "hook.jpg", description: "puhhh shhshshhsh dadehda cring.", price: "230,000"},
+			{name: "Pickaxe", img: "pickaxe.jpg", description: "Whoops.", price: "456,000"} ];
 end
 
 get '/' do
@@ -88,12 +89,21 @@ end
 
 # --- POSTS ---
 post '/sign' do
-	puts params
+	puts params["email"]
+	
+	if User.exists?(email: params["email"]) || User.exists?(username: params["username"])
+	flash[:error] = "Email or Username is already taken. Please try again"
+	redirect :signup
+
+	else
+
+
 	@user = User.new(email: params["email"],username: params["username"], password: params["password"])
 	@user.save
 
 	session[:id] = @user.id
 	redirect :home;
+end
 end
 
 post '/home' do
@@ -112,7 +122,7 @@ post '/home' do
 	session[:id] = @user.id
 	
 	
-	erb :home
+	redirect :home;
 end
 
 post '/checkout' do
@@ -131,4 +141,9 @@ post '/add' do
 	@user.update_attributes(products: @data)
 end
 
+post '/cart' do
+	flash[:confirm] = "Thanks for shopping at Arget. We will send you confimation of your order ASAP"
+	redirect :home;
+
+end
 

@@ -38,7 +38,6 @@ end
 
 get '/' do
 	erb :'/front'
-
 end
 
 # Main navigation
@@ -87,35 +86,38 @@ get '/:name' do
 end
 
 # --- POSTS ---
+
+# SIGN UP
 post '/sign' do
 	puts params["email"]
 	
 	if User.exists?(email: params["email"]) || User.exists?(username: params["username"])
-	flash[:error] = "Email or Username is already taken. Please try again"
-	redirect :signup
-
+		flash[:error] = "Email or Username is already taken. Please try again";
+		redirect :signup;
 	else
-
-
-	@user = User.new(email: params["email"],username: params["username"], password: params["password"], products: " ")
-	@user.save
-
-	session[:id] = @user.id
-	redirect :home;
+		@user = User.new(email: params["email"],username: params["username"], password: params["password"], products: " ");
+		@user.save;
+		session[:id] = @user.id;
+		redirect :home;;
+	end
 end
+
+# Login
+post '/login' do
+
 end
 
 post '/home' do
 	#, :provides => :json do
-  # I'd use a 201 as the status if actually creating something,
-  # 200 while testing.
-  # I'd send the JSON back as a confirmation too, hence the
-  # :provides => :json
-  # @data = JSON.parse params
-  # # do something with the data, then…
-  # halt 200, data.to_json
-  # halt because there's no need to render anything
-  # and it's convenient for setting the status too
+	# I'd use a 201 as the status if actually creating something,
+	# 200 while testing.
+	# I'd send the JSON back as a confirmation too, hence the
+	# :provides => :json
+	# @data = JSON.parse params
+	# # do something with the data, then…
+	# halt 200, data.to_json
+	# halt because there's no need to render anything
+	# and it's convenient for setting the status too
 
 	@user = User.find_by(email: params["email"], password: params["password"])
 	session[:id] = @user.id
@@ -123,16 +125,11 @@ post '/home' do
 	erb :home
 end
 
-# post '/checkout' do
-# 	redirect :cart;
-# end
-
 post '/getdata' do
 	@products.to_json
 end
 
 post '/add' do
-	#@user = User.find_by(email: params["email"], password: params["password"])
 	@data = params["data_value"]
 	@user = User.find_by_id(session[:id]) 
 	@user.update_attributes(products: @data)

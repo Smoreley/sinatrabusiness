@@ -6,8 +6,7 @@
 
   <% a = @user.products.split(" ")  %>
 
-
-
+  <!-- Product Listings -->
   <div id="top">
     <table id="t">
       <tr>
@@ -25,30 +24,37 @@
     </table>
   </div>
 
-<form id="b" method="POST" action="/cart">
-  <table>
-    <tr>
-      <td><label for="cardnumber">Card Number</label></th>
-      <td><label for="sc">Security Code</label></th>
-    </tr>
-    <tr>
-      <th><input type="text" name="cardnumber"></th>
-      <th><input type="text" name="sc"></th>
-    </tr>
-    <tr>
-      <td><label for="nameoncard">Name on Card</label></th>
-      <td><label for="expir">Expiration</label></th>
-    </tr>
-    <tr>
-      <th><input type="text" name="number"></th>
-      <th><input type="text" name="sc"></th>
-    </tr>
-  </table>
+  <!-- Credit card Form -->
+  <form id="b" method="POST" action="/cart">
+    <table>
+      <tr>
+        <td><label for="cardnumber">Card Number</label></th>
+        <td><label for="sc">Security Code</label></th>
+      </tr>
+      <tr>
+        <th><input type="text" name="cardnumber"></th>
+        <th><input type="text" name="sc"></th>
+      </tr>
+      <tr>
+        <td><label for="nameoncard">Name on Card</label></th>
+        <td><label for="expir">Expiration</label></th>
+      </tr>
+      <tr>
+        <th><input type="text" name="number"></th>
+        <th><input type="text" name="sc"></th>
+      </tr>
+    </table>
 
-  <br>
-  <div id="subcontainer">
-    <input class='bttn' type="submit" value="submit">
-  </div>
-</form>
+    <br>
+    <div id="subcontainer">
+      <input class='bttn' type="submit" value="submit">
+    </div>
+  </form>
 
 </div>
+
+
+<script>
+
+
+</script>

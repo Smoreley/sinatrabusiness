@@ -7,22 +7,22 @@
     <% for i in 0...(@products.count/2) do %>
 	    <div class="row">
 	    	<% for j in 0...3 do %>
-	    	<% if @products.count <= (i*3)+j; break end %>
-				<div class="col-sm-4" id=<%'#{@products.name}'%>>
-				 
-					<div class="prodcontent">
-	                	<div id="productimage">
-                    <div id="<%= @products[(i*3)+j][:name] %>" class="addbttn"></div>
-	                        <h1><%= @products[(i*3)+j][:name] %></h1>	                        
-	                        <img src="/image/<%= @products[(i*3)+j][:img] %>" alt="blaster">
-	                    </div>
-	                    <div id="productdescription">	                        
-	                        <%= @products[(i*3)+j][:description] %>
-	                    </div>
-                      <div id="pricecontainer"><%= @products[(i*3)+j][:price] %></div>
-	                </div>
-	            </div>
-	    	<% end %>
+
+        <% if @products.count <= (i*3)+j; break end %>
+          <div class="col-sm-4" id=<%'#{@products.name}'%> >
+            <div class="prodcontent">
+              <div id="productimage">
+                <div id="<%= @products[(i*3)+j][:name] %>" class="addbttn"></div>
+                  <h1><%= @products[(i*3)+j][:name] %></h1>	                        
+                  <img src="/image/<%= @products[(i*3)+j][:img] %>" alt="blaster">
+                </div>
+                <div id="productdescription">	                        
+                  <%= @products[(i*3)+j][:description] %>
+                </div>
+              <div id="pricecontainer"><%= @products[(i*3)+j][:price] %></div>
+            </div>
+          </div>
+        <% end %>
 	    </div>
     <% end %>
     </div>
@@ -31,16 +31,8 @@
 </div>
  
 <script>
-   	// var array = [1,2,3,4,6]
-   	
-   	// $.ajax({
-    //       url : "/add",
-    //       type : "post",
-    //       data : { data_value: JSON.stringify(array) }
-    //   });
-
   var arr = " ";
-  $(document).ready(function(){
+  $(function(){
 
       // Black magic that handles on click events for the product page
       $.post("getdata", function(result) {
@@ -52,6 +44,7 @@
           }
       });
 
+      // Submit button
       $("#s").click(function() {
         $.ajax({
                 url : "/add",
@@ -65,6 +58,7 @@
 
   });
 
+  // Add to array (storing what items that are in the cart)
   function addtoarray(str) {
     arr += str;
   }

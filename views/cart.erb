@@ -1,29 +1,31 @@
 <link rel="stylesheet" href="/css/cart.css">
+ 
 
 <h1> Checkout </h1>
-
 <div id="cartcontainer">
 
-  <% a = @user.products.split(" ") %>
-  
+  <% a = @user.products.split(" ")  %>
+
+
+
   <div id="top">
-  <table>
-    <tr>
-      <td>Name</td>
-      <td>Quantity</td>
-      <td>Price</td>
-    </tr>
-    <%for i in 1...a.length - 1%>
+    <table id="t">
       <tr>
-      <th><%= @products[a[i].to_i][:name] %></th>
-      <th>1</th>
-      <th>$<%= @products[a[i].to_i][:price] %></th>
+        <td>Name</td>
+        <td>Quantity</td>
+        <td>Price</td>
       </tr>
-    <%end%>
-  </table>
+      <%for i in 1...a.length - 1%>
+        <tr>
+          <th><%= @products[a[i].to_i][:name] %></th>
+          <th>1</th>
+          <th>$<%= @products[a[i].to_i][:price] %></th>
+        </tr>
+      <%end%>
+    </table>
   </div>
 
-<form method="POST">
+<form id="b" method="POST" action="/cart">
   <table>
     <tr>
       <td><label for="cardnumber">Card Number</label></th>
@@ -48,4 +50,5 @@
     <input class='bttn' type="submit" value="submit">
   </div>
 </form>
+
 </div>

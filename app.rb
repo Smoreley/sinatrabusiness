@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'json'
+require 'sinatra/flash'
 # require "sendgrid-ruby"
 
 enable :sessions
@@ -26,13 +27,13 @@ require './models'
 # Global Var go here
 before do 
 		# Product Info
-		@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!", price: 800},
-			{name: "Saber", img: "lightsaber.jpg", description: "Swosh swosh!", price: 900},
-			{name: "Hammer", img: "hammer.jpg", description: "Thuuuud......THUUUD!", price: 800},
-			{name: "Reactor", img: "reactor.jpg", description: "humnznznznznznznnznzn!", price: 400},
-			{name: "Recorder", img: "talkie.jpg", description: "Sul sul. Zo hungwah Ne chumcha laka fruby nart.", price: 500},
-			{name: "Hook", img: "hook.jpg", description: "puhhh shhshshhsh dadehda cring.", price: 1200},
-			{name: "Pickaxe", img: "pickaxe.jpg", description: "Whoops.", price: 400} ];
+		@products = [ {name: "Blaster", img: "blaster.jpg", description: "Pew pew pew!", price: "660,000"},
+			{name: "Saber", img: "lightsaber.jpg", description: "Swosh swosh!", price: "500,345"},
+			{name: "Hammer", img: "hammer.jpg", description: "Thuuuud......THUUUD!", price: "999,000"},
+			{name: "Reactor", img: "reactor.jpg", description: "humnznznznznznznnznzn!", price: "34,000"},
+			{name: "Recorder", img: "talkie.jpg", description: "Sul sul. Zo hungwah Ne chumcha laka fruby nart.", price: "456,000"},
+			{name: "Hook", img: "hook.jpg", description: "puhhh shhshshhsh dadehda cring.", price: "230,000"},
+			{name: "Pickaxe", img: "pickaxe.jpg", description: "Whoops.", price: "456,000"} ];
 end
 
 get '/' do
@@ -47,7 +48,6 @@ get '/:name' do
 	if session[:id] != nil
 		@user = User.find(session[:id]);
 		@loggedin = true;
-
 
 
 		case params[:name]
@@ -88,12 +88,21 @@ end
 
 # --- POSTS ---
 post '/sign' do
-	puts params
+	puts params["email"]
+	
+	if User.exists?(email: params["email"]) || User.exists?(username: params["username"])
+	flash[:error] = "Email or Username is already taken. Please try again"
+	redirect :signup
+
+	else
+
+
 	@user = User.new(email: params["email"],username: params["username"], password: params["password"], products: " ")
 	@user.save
 
 	session[:id] = @user.id
 	redirect :home;
+end
 end
 
 post '/home' do
@@ -130,5 +139,13 @@ post '/add' do
 end
 
 post '/contact' do
+
+end
+
+post '/cart' do
+	@user = User.find_by_id(session[:id]) 
+	@user.update_attributes(products: nil)
+	flash[:confirm] = "Thanks for shopping at Arget. We will send you confimation of your order ASAP"
+	redirect :cart;
 
 end

@@ -19,7 +19,7 @@
                 <div id="productdescription">	                        
                   <%= @products[(i*3)+j][:description] %>
                 </div>
-              <div id="pricecontainer"><%= @products[(i*3)+j][:price] %></div>
+              <div id="pricecontainer">$<%= @products[(i*3)+j][:price] %></div>
             </div>
           </div>
         <% end %>

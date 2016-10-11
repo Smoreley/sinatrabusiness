@@ -2,7 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'json'
 require 'sinatra/flash'
-# require "sendgrid-ruby"
+require "sendgrid-ruby"
 
 enable :sessions
 
@@ -15,14 +15,6 @@ require './models'
 @loggedin = false;
 
 # --- GETS ---
-
-# Temp, this should be removed later. Right now used for testing login (with out inputing the data)
-# get '/home' do
-# 	@user = User.new(email: params["email"],username: params["username"], password: params["password"])
-# 	@user.save
-# 	session[:id] = @user.id
-# 	erb :home
-# end
 
 # Global Var go here
 before do 
@@ -51,15 +43,12 @@ get '/:name' do
 
 		case params[:name]
 		when "home"
-			
 			erb :home;
 		when "about"
 			erb :about;
 		when "product"
 			erb :product;
-		
 		when "cart"
-
 			@user = User.find_by_id(session[:id])
 			erb :cart;
 		when "logout"
@@ -104,27 +93,20 @@ end
 
 # Login
 post '/login' do
+	if User.exists?(password: params["password"]) && User.exists?(email: params["email"])
+		# pass and username exit
+		@user = User.find_by(email: params["email"], password: params["password"])
+		session[:id] = @user.id;
+		redirect :home;
+	else
+		# Could not find username or password
+		flash[:error] = "Email or Password are incorrect. Please try again";
+		redirect :login;
+	end
 
 end
 
-post '/home' do
-	#, :provides => :json do
-	# I'd use a 201 as the status if actually creating something,
-	# 200 while testing.
-	# I'd send the JSON back as a confirmation too, hence the
-	# :provides => :json
-	# @data = JSON.parse params
-	# # do something with the data, then…
-	# halt 200, data.to_json
-	# halt because there's no need to render anything
-	# and it's convenient for setting the status too
-
-	@user = User.find_by(email: params["email"], password: params["password"])
-	session[:id] = @user.id
-	
-	erb :home
-end
-
+# Returns Product array in json format
 post '/getdata' do
 	@products.to_json
 end
@@ -141,8 +123,7 @@ end
 
 post '/cart' do
 	@user = User.find_by_id(session[:id]) 
-	@user.update_attributes(products: nil)
+	@user.update_attributes(products: " ")
 	flash[:confirm] = "Thanks for shopping at Arget. We will send you confimation of your order ASAP"
 	redirect :cart;
-
 end

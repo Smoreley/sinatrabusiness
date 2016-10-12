@@ -3,3 +3,36 @@
 <h1>Welcome, <%=@user.username%>!</h1>
 
 <h1 style="color:blue;"><%=@data%></h1>
+
+
+<form method ="POST" action="/billing">
+  Shipping Addres:<br>
+  <input type="text" name="street"><br>
+  State:<br>
+  <input type="text" name="state" value="Mouse"><br>
+   City:<br>
+  <input type="text" name="city" value="Mouse"><br>
+    Zipcde:<br>
+  <input type="text" name="zip" value="Mouse"><br>
+ <input type="submit" value="Submit">
+</form>
+
+<%if @Bill%>
+<h1>Billing Information</h1>
+
+<table style="width:30%">
+  <tr>
+    <th>Address</th>
+    <th>State</th> 
+    <th>City</th>
+    <th>Zipcode</th>
+  </tr>
+  <tr>
+    <td><%=@Bill.street%></td>
+    <td><%=@Bill.state%></td> 
+    <td><%=@Bill.city%></td>
+    <td><%=@Bill.zipcode%></td>
+  </tr>
+  
+</table>
+<%end%>

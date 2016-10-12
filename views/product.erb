@@ -38,19 +38,22 @@
       $.post("getdata", function(result) {
           var a = $.parseJSON(result)
           for (i = 0; i < a.length; i++) {
-            (function(j) {
-                $("#"+a[i]["name"]).click(() => addtoarray(j) );
-            })(i + " ");
-          }
-      });
+                   (function(j) {
+              $("#"+a[i]["name"]).click(() => addtoarray(j) );
+          })(a[i]["name"] + a[i]["price"] + " ");
+        }
+    
+    });
 
-      // Submit button
-      $("#s").click(function() {
-        $.ajax({
-                url : "/add",
-                type : "post",
-                data : { data_value: JSON.stringify(arr) },
-              });
+    // alert(<% @products.count %>);
+ 
+    $("#s").click(function() {
+       addtoarray("Total" + " ");
+      $.ajax({
+              url : "/add",
+              type : "post",
+              data : { data_value: JSON.stringify(arr) },
+            });
 
         // Travel to the cart page after hitting the submit button
         window.location = '/cart';

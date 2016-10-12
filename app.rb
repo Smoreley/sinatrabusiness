@@ -43,6 +43,9 @@ get '/:name' do
 
 		case params[:name]
 		when "home"
+			
+			@Bill = Billing.find_by user_id: session[:id]
+
 			erb :home;
 		when "about"
 			erb :about;
@@ -86,6 +89,13 @@ post '/sign' do
 	else
 		@user = User.new(email: params["email"],username: params["username"], password: params["password"], products: " ");
 		@user.save;
+		
+
+		
+
+
+
+
 		session[:id] = @user.id;
 		redirect :home;;
 	end
@@ -151,4 +161,23 @@ post '/cart' do
 	@user.update_attributes(products: " ")
 	flash[:confirm] = "Thanks for shopping at Arget. We will send you confimation of your order ASAP"
 	redirect :cart;
+end
+
+post '/billing' do
+	
+	@street = params["street"]
+	if !Billing.find_by user_id: session[:id]
+	@bill = Billing.new(street: params["street"], state: params["state"], city: params["city"],zipcode: params["zip"] )
+	@user = User.find_by_id(session[:id]) 
+	@bill.user = @user
+	@bill.save
+	else
+	@bill = Billing.find_by user_id: session[:id]
+
+	@bill.update_attributes(street: params["street"], state: params["state"], city: params["city"],zipcode: params["zip"])	
+	end
+	
+	redirect :home
+
+	
 end

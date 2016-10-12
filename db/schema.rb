@@ -12,6 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20161009013114) do
 
+  create_table "billings", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "street"
+    t.string  "state"
+    t.string  "city"
+    t.string  "zipcode"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "username"

@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 20161009013114) do
     t.string  "zipcode"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "total"
+    t.datetime "created_at"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "username"

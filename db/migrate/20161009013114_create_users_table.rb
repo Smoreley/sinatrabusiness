@@ -20,11 +20,22 @@ class CreateUsersTable < ActiveRecord::Migration
 	end
 
 
+	create_table :orders do |t|
+		t.integer :user_id
+		t.string  :total
+		t.datetime :created_at
+	end
+
+
+
+
+
 	end
 
 	def down
 		drop_table :users
 		drop_table :billings
+		drop_table :orders
 	end
 end
 

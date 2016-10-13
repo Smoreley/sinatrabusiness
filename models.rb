@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 	# 	where(user_name: user_name, password: password).first
 	# end
 	has_one :billing
-
+	has_many :orders
 end
 
 
@@ -32,5 +32,11 @@ class Billing < ActiveRecord::Base
 	belongs_to :user
 
 	  # validates_uniqueness_of :user_id, conditions: -> { where.not(status: 'archived') }
+
+end
+
+class Order < ActiveRecord::Base
+
+	belongs_to :user
 
 end

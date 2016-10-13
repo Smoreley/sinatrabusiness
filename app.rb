@@ -45,8 +45,10 @@ get '/:name' do
 		when "home"
 			
 			@Bill = Billing.find_by user_id: session[:id]
-
+			@Order = Order.find_by user_id: session[:id]
+			@all = Order.where(user_id: session[:id])
 			erb :home;
+			
 		when "about"
 			erb :about;
 		when "product"
@@ -159,8 +161,12 @@ end
 post '/cart' do
 	@user = User.find_by_id(session[:id]) 
 	@user.update_attributes(products: " ")
+	@total = Order.new(total:params["total"])
+	@total.user = @user
+	@total.save
 	flash[:confirm] = "Thanks for shopping at Arget. We will send you confimation of your order ASAP"
-	redirect :cart;
+	 
+		redirect :cart;
 end
 
 post '/billing' do

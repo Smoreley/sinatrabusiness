@@ -1,0 +1,31 @@
+#order {
+
+	position: relative;
+	left: 670px;
+	bottom: 125px;
+}
+
+#in {
+
+	position: relative;
+	left:350px;
+}
+
+#in input {
+
+
+	width: 300px;
+	border-radius: 30px;
+	
+	
+
+}
+
+#sub {
+
+	color: white;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}

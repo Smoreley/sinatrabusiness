@@ -1,11 +1,11 @@
-
+<link rel="stylesheet" href="/css/home.css">
 
 <h1>Welcome, <%=@user.username%>!</h1>
 
 <h1 style="color:blue;"><%=@data%></h1>
 
 
-<form method ="POST" action="/billing">
+<form id ="in" method ="POST" action="/billing">
   Shipping Addres:<br>
   <input type="text" name="street"><br>
   State:<br>
@@ -14,13 +14,14 @@
   <input type="text" name="city" value="Mouse"><br>
     Zipcde:<br>
   <input type="text" name="zip" value="Mouse"><br>
- <input type="submit" value="Submit">
+ <br>
+ <input id="sub" type="submit" value="Update Billing Address">
 </form>
 
 <%if @Bill%>
-<h1>Billing Information</h1>
+<h1>Billing Address</h1>
 
-<table style="width:30%">
+<table id = style="width:30%">
   <tr>
     <th>Address</th>
     <th>State</th> 
@@ -33,6 +34,26 @@
     <td><%=@Bill.city%></td>
     <td><%=@Bill.zipcode%></td>
   </tr>
-  
-</table>
+  </table>
 <%end%>
+<%if @Order%>
+
+<div id="order">
+
+<h1>Previous Purchases</h1>
+
+<table style="width:30%">
+  <tr>
+    <th>Total</th>
+    <th>Date</th> 
+  <tr>
+    <%@all.each do |order|%>
+    <tr>
+    <td>$<%=order.total%></td>
+   <td><%=@Order.created_at%></td>
+   </tr>
+<%end%>
+
+  </table>
+<%end%>
+</div>
